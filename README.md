@@ -15,10 +15,10 @@ Affected Product: ManageEngine ServiceDesk Plus
 
 Tested on: v9.2 build number 9232
 
-<pre>
+
 File upload vulnerability can only be exploited by an authenticated user which can also be any low privileged user like guest (default account: u:guest/p:guest)
 This vulnerability can be exploited by uploading a JSP file instead of image file. Since the file extension has been checked on the client side, it is possible to upload a jsp file which contains a reverse shell by intercepting the request and changing the file extension from .jsp.jpg to .jsp.
-</pre>
+
 <pre>
 REQUEST:
 ===========================================================================================
