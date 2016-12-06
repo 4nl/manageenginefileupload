@@ -94,7 +94,7 @@ Content-Length: 528
 Date: Tue, 15 Nov 2016 08:27:55 GMT
 Connection: close
 Server: -
-		<script lang="JavaScript" type="text/JavaScript">
+		&lt;script lang="JavaScript" type="text/JavaScript"&gt;
   		var formName = parent.document.getElementById("FORMNAME").value;
 		var opts = parent.document.forms[formName].INLINEIMAGES.options;
 		var imgName = "1479198475119.jsp";
@@ -103,7 +103,7 @@ Server: -
 		opts[opts.length] = option;
   		//alert("/inline/"+"WorkOrder"+"/"+"4"+"/"+"1479198475119.jsp");
   		parent.ZE.activeEditor.previewImage("/inline/"+"WorkOrder"+"/"+"4"+"/"+"1479198475119.jsp");//No i18n
-		</script>
+		&lt;/script&gt;
 </pre>		
 		
 <pre>
